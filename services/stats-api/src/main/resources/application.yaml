@@ -28,3 +28,4 @@ courtvision:
   balldontlie:
     base-url: https://api.balldontlie.io
     api-key: ${BALLDONTLIE_API_KEY}
+    requests-per-minute: 5
