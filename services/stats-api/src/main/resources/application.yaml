@@ -23,3 +23,8 @@ management:
   endpoint:
     health:
       show-details: always
+
+courtvision:
+  balldontlie:
+    base-url: https://api.balldontlie.io
+    api-key: ${BALLDONTLIE_API_KEY}
