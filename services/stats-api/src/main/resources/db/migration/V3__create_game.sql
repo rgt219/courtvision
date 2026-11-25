@@ -1,0 +1,21 @@
+CREATE TABLE game (
+    id                  BIGINT      NOT NULL AUTO_INCREMENT,
+    external_id         INT         NOT NULL,
+    game_date           DATE        NOT NULL,
+    season              SMALLINT    NOT NULL,
+    postseason          BOOLEAN     NOT NULL DEFAULT FALSE,
+    status              VARCHAR(30),
+    home_team_id        BIGINT      NOT NULL,
+    visitor_team_id     BIGINT      NOT NULL,
+    home_team_score     SMALLINT,
+    visitor_team_score  SMALLINT,
+    created_at          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT uq_game_external_id UNIQUE (external_id),
+    CONSTRAINT fk_game_home_team    FOREIGN KEY (home_team_id)    REFERENCES team (id),
+    CONSTRAINT fk_game_visitor_team FOREIGN KEY (visitor_team_id) REFERENCES team (id),
+    CONSTRAINT ck_game_different_teams CHECK (home_team_id <> visitor_team_id),
+    INDEX ix_game_date (game_date),
+    INDEX ix_game_season (season, postseason)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;

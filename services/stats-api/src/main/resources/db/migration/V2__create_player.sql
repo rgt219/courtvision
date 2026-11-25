@@ -1,0 +1,22 @@
+CREATE TABLE player (
+    id             BIGINT       NOT NULL AUTO_INCREMENT,
+    external_id    INT          NOT NULL,
+    first_name     VARCHAR(50)  NOT NULL,
+    last_name      VARCHAR(50)  NOT NULL,
+    position       VARCHAR(10),
+    height         VARCHAR(10),
+    weight_lbs     SMALLINT,
+    jersey_number  VARCHAR(4),
+    college        VARCHAR(100),
+    country        VARCHAR(60),
+    draft_year     SMALLINT,
+    draft_round    TINYINT,
+    draft_number   TINYINT,
+    team_id        BIGINT,
+    created_at     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at     TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT uq_player_external_id UNIQUE (external_id),
+    CONSTRAINT fk_player_team FOREIGN KEY (team_id) REFERENCES team (id),
+    INDEX ix_player_last_first (last_name, first_name)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
