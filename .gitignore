@@ -1,0 +1,23 @@
+# Java
+target/
+build/
+*.class
+.gradle/
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Secrets: never commit these
+.env
+*.env.local
+
+# OS
+.DS_Store
+Thumbs.db
